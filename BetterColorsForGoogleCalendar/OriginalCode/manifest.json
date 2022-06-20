@@ -1,0 +1,26 @@
+{
+    "background": {
+        "persistent": false,
+            "scripts": ["scripts/background.js"]
+    },
+    "content_scripts": [{
+        "js": ["/scripts/content.js"],
+        "matches": ["https://calendar.google.com/*"]
+    }],
+        "description": "Adds more colors to Google Calendar!",
+            "icons": {
+        "128": "icon128.png",
+            "16": "icon16.png",
+                "48": "icon48.png"
+    },
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhVB/ORMyYi7bJuuPxfRD319JGJHjvs5aGuR+j9rL/X73XFUwZ9oKA2H5+h8tXNV76fqPN60U/jEDglMhkRtf/GrXF6QqmdgP7qEk30hbdDzFdFVxvZxQHwAxDE8tKly3LlRInbDMj1nOqkQcgT3GiZVSih765zMBZSBkP4x0EBOOAbrQqvfrngHukyk5MHvQMELvGS3x9pRSOmHHJLyOh1OJH5ucKCypbjDcCyTDgoL+7pMJNpuHZvOVcGiYt75EiNdXA+GrG4077ob8bixQwpfeZKvhrpvUNvMxSs8LcLV1gi4x6vtzP94wojUe+n0xBv2MzlQMld52Tbb/jC3v8wIDAQAB",
+        "manifest_version": 2,
+            "name": "More Colors for Calendar!",
+                "page_action": {
+        "default_icon": "icon128.png",
+            "default_popup": "popup.html"
+    },
+    "permissions": ["declarativeContent", "storage"],
+        "update_url": "https://clients2.google.com/service/update2/crx",
+            "version": "1.0.1"
+}
