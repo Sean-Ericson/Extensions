@@ -1,0 +1,32 @@
+{
+    "name": "Better Colors for Google Calendar!",
+    "description": "It's like 'More Colors for Google Calendar', but better!",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "options_page": "options.html",
+    "permissions": [
+        "storage",
+        "scripting",
+        "alarms",
+        "tabs",
+        "activeTab"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/clarkes_bird_16.png",
+            "32": "/images/clarkes_bird_32.png",
+            "48": "/images/clarkes_bird_48.png",
+            "128": "/images/clarkes_bird_128.png"
+        }
+    },
+    "icons": {
+        "16": "/images/clarkes_bird_16.png",
+        "32": "/images/clarkes_bird_32.png",
+        "48": "/images/clarkes_bird_48.png",
+        "128": "/images/clarkes_bird_128.png"
+    }
+}

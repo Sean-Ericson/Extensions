@@ -1,4 +1,4 @@
-// popup.js
+// options.js
 
 window.onload = function () {
     
