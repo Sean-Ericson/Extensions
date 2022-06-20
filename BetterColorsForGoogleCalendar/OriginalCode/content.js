@@ -56,7 +56,6 @@ chrome.storage.local.get(null, function (items) {
     }
 
     retrieve_everything();
-
 });
 
 function inform_color_menu() {
@@ -65,7 +64,6 @@ function inform_color_menu() {
         data: colors
     });
 }
-
 
 //function to update deprecated storage structure
 function fixOld(items) {
@@ -84,7 +82,6 @@ function fixOld(items) {
 }
 
 function retrieve_everything() {
-
     //clear everything.
     colors = {};
     colors['color'] = []
@@ -181,13 +178,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, callback) {
     }
 });
 
-
-
 var targetBox = "";
 var targetBoxId = "";
 var recurrentChoice = "";
 var currentColor = null;
-
 
 //convert rgb to hex
 function rgb2hex(rgb) {
@@ -200,8 +194,6 @@ function rgb2hex(rgb) {
 
 //function to color one event
 function colorEvent(event) {
-
-
     if (DEBUG) {
         console.log("performing default color event");
         console.log(event)
@@ -226,14 +218,10 @@ function colorEvent(event) {
         }
     }
 
-    //console.log("coloring event id");
-    //console.log(event_id);
-
     var event_rules = recurringColorsRules[event_id.substring(0, 15)];
     var did_something = false;
 
     if (event_rules) {
-
         if (DEBUG) {
             console.log("FOUND A RULE");
             console.log(eventDate);
@@ -301,7 +289,6 @@ function colorEvent(event) {
             console.log(eventColors[event_id]);
         }
 
-
     } else {
 
         if (event.getAttribute("class") == "ifwtOb elYzab-cXXICe-Hjleke NlL62b GHWQBd" || event.getAttribute("class") == "ifwtOb elYzab-cXXICe-Hjleke NlL62b") {
@@ -309,7 +296,6 @@ function colorEvent(event) {
             event.style["border-color"] = eventColors[event_id];
         } else {
             event.style["background-color"] = eventColors[event_id];
-
         }
 
         if (DEBUG) {
@@ -322,7 +308,6 @@ function colorEvent(event) {
 
 //function to color one event circle (month view)
 function colorEventMonth(event) {
-
     if (DEBUG) {
         console.log("performing month color event");
         console.log(event)
@@ -395,7 +380,6 @@ function colorEventMonth(event) {
         return;
     }
 
-
     if (DEBUG) {
         console.log("MONTH");
         console.log("coloring event id");
@@ -433,7 +417,6 @@ function colorEventMonth(event) {
 
 //function to color one event circle (schedule view)
 function colorEventSched(event) {
-
     if (DEBUG) {
         console.log("performing sched color event");
         console.log(event)
@@ -492,7 +475,6 @@ function colorEventSched(event) {
 
 //function to color events
 function colorEvents(count) {
-
     if (count == 0) {
         return;
     }
@@ -541,7 +523,6 @@ function colorEvents(count) {
             colorEventSched(events3[i]);
         }
     }
-
 }
 
 //edit calendar color menu
@@ -552,7 +533,6 @@ document.addEventListener("contextmenu", function (evnt) {
 
 //init color menu
 function initColorMenu(evnt, count) {
-
     if (count == 0) {
         return;
     }
@@ -570,10 +550,6 @@ function initColorMenu(evnt, count) {
     }
 
     targetBox = evnt.target;
-
-    //console.log("target box! (init color menu)");
-    //console.log(targetBox);
-    ////console.log(targetBox.getAttribute("class"));
 
     while (targetBox && targetBox.tagName != 'HTML' && !(targetBox.getAttribute("data-eventid") && targetBox.style["border-color"]) && !(page == 3 && targetBox.getAttribute("data-keyboardactiontype"))) {
         targetBox = targetBox.parentNode;
@@ -605,7 +581,6 @@ function checkDelete(count) {
         return;
     }
 
-
     var x = document.getElementsByClassName("JPdR6b e5Emjc kydeve e6NAn");
 
     if (x.length == 0 || typeof x[0] == "undefined") {
@@ -614,9 +589,7 @@ function checkDelete(count) {
     }
 
     x[0].addEventListener("click", function (evnt) {
-
         var target = evnt.target;
-
         if (target == null) {
             return;
         }
@@ -627,7 +600,6 @@ function checkDelete(count) {
             if (target == null) {
                 return;
             }
-
         }
 
         if (target.getAttribute("class").includes("z80M1 PeCuse")) {
@@ -655,16 +627,9 @@ function checkDelete(count) {
             }, 250);
 
             setTimeout(function () { clearInterval(z) }, 10000);
-
         }
-
     });
-
-
 }
-
-
-
 
 //user selected a custom color
 function customColorSelected(evnt, advanced) {
@@ -690,12 +655,8 @@ function customColorSelected(evnt, advanced) {
     // if (document.getElementsByClassName("I7OXgf dT3uCc gF3fI fNxzgd Inn9w iWO5td").length > 0) {
     // 	return;
     // }
-
-
     //targetBox.style["background-color"] = selectedCircle.style["background-color"];
-
     //var targetBoxId = targetBox.getAttribute("data-eventid").substring(0, 25) + targetBox.getAttribute("data-eventid").substring(45, 50);
-
     //var x = document.getElementsByClassName("I7OXgf dT3uCc gF3fI fNxzgd Inn9w iWO5td");
 
     if (selectedCircle.style["background-color"].includes("rgb")) {
@@ -704,12 +665,9 @@ function customColorSelected(evnt, advanced) {
         eventColors[targetBoxId] = selectedCircle.style["background-color"];
     }
 
-
-
     // if (builtin) {
     // 	targetBox.style["background-color"] = selectedCircle.style["background-color"];
     // }
-
     //var x = document.getElementsByClassName("I7OXgf dT3uCc gF3fI fNxzgd Inn9w iWO5td");
 
     if (DEBUG) {
@@ -721,7 +679,6 @@ function customColorSelected(evnt, advanced) {
     }
 
     storageSync();
-
 }
 
 //sync colors (ONLY) to storage
@@ -741,9 +698,7 @@ function storageSyncColors() {
             }
         });
     }
-
 }
-
 
 //sync current colors and eventcolors and recurrent rules to storage
 function storageSync() {
@@ -800,7 +755,6 @@ function storageSync() {
             }
         });
     }
-
 }
 
 //do the check mark thing
@@ -872,7 +826,6 @@ function generateCheckMark(count) {
             }
         }
     }
-
 }
 
 //delete rules if built in overrides
@@ -920,9 +873,7 @@ function deleteRules() {
     if (DEBUG) {
         console.log("rules deleted for group: " + targetGroupId);
     }
-
 }
-
 
 //TODO: set hover label of color circles
 function getSemanticName(color) {
@@ -939,13 +890,9 @@ function generateMenu(evnt, count) {
         return;
     }
 
-
     var x = document.getElementsByClassName("XdW1Wc");
-
     var y = document.getElementById("colorSelector");
-
     var z = document.getElementById("button" + colors['color'][colors['color'].length - 1]);
-
 
     if (x.length == 0 || typeof x[0] == "undefined" || y || z) {
         setTimeout(generateMenu, 5, evnt, count - 1);
@@ -961,7 +908,6 @@ function generateMenu(evnt, count) {
     x = x[0].children[0]
 
     var nodeCopy = x.children[0].children[0];
-
     var bottomRow = x.children[x.children.length - 1];
 
     if (typeof bottomRow == 'undefined') {
@@ -969,7 +915,6 @@ function generateMenu(evnt, count) {
     }
 
     var idx = 0;
-
     var colors_per_row;
     if (page == 4) {
         colors_per_row = 2;
@@ -980,9 +925,7 @@ function generateMenu(evnt, count) {
     var color_list = colors['color'];
 
     while (idx < color_list.length) {
-
         if (bottomRow.children.length < colors_per_row) {
-
             if (DEBUG) {
                 console.log("adding circle");
             }
@@ -1012,14 +955,11 @@ function generateMenu(evnt, count) {
         } else {
             bottomRow = bottomRow.parentNode.appendChild(bottomRow.cloneNode(false));
         }
-
     }
 }
 
-
 //generate new selector circle
 function newSelector(count) {
-
     if (count == 0) {
         return;
     }
@@ -1042,7 +982,6 @@ function newSelector(count) {
     x = x[0].children[0];
 
     var nodeCopy = x.children[0].lastChild;
-
     var bottomRow = x.children[x.children.length - 1];
 
     if (typeof bottomRow == 'undefined') {
@@ -1074,7 +1013,6 @@ function newSelector(count) {
     newColorCircle.removeAttribute("jsaction");
     newColorCircle.removeAttribute("jsname");
 
-
     newColorCircle.children[0].innerHTML = "+";
     newColorCircle.children[0].setAttribute("aria-hidden", "false");
     newColorCircle.children[0].style.opacity = 1;
@@ -1085,9 +1023,7 @@ function newSelector(count) {
     //newColorButton.removeAttribute("jscontroller");
     //newColorButton.removeAttribute("jsaction");
 
-
     bottomRow.appendChild(newColorCircle);
-
 }
 
 function isAlphaNumeric(str) {
@@ -1106,7 +1042,6 @@ function isAlphaNumeric(str) {
 
 //select a new color
 function openColorSelector(evnt) {
-
     var color = prompt("Enter color hexcode (without # sign):");
 
     if (!color || color.length != 6 || !isAlphaNumeric(color) || colors['color'].includes("#" + color)) {
@@ -1150,18 +1085,12 @@ function openColorSelector(evnt) {
         newSelector(20);
     }
 
-
     setTimeout(colorEvents, 100, 10);
-
     storageSync();
-
 }
-
 
 //make sure every click syncs
 document.addEventListener("click", function (evnt) {
-
-
     if (page == 4) {
         initColorMenu(evnt, 3);
         //colorAdvancedDetailsCircle(20);
@@ -1173,7 +1102,6 @@ document.addEventListener("click", function (evnt) {
 document.addEventListener("mousedown", function (evnt) {
     setTimeout(checkDrag, 1, 20);
 });
-
 
 //check for expand dialog
 function checkExpand(count, target) {
@@ -1199,7 +1127,6 @@ function checkExpand(count, target) {
         square.style['background-color'] = targetColor;
     }
 
-
     var x = setInterval(function () {
         if (document.getElementsByClassName("jefcFd").length == 0) {
             colorEvents(20);
@@ -1208,7 +1135,6 @@ function checkExpand(count, target) {
     }, 50);
 
     setTimeout(function () { clearInterval(x) }, 30000);
-
     setTimeout(colorEvents, 25, 20);
     setTimeout(colorEvents, 50, 20);
     setTimeout(colorEvents, 100, 20);
@@ -1269,9 +1195,7 @@ function checkDrag(count) {
     }, 100);
 
     setTimeout(function () { clearInterval(y) }, 5000);
-
     colorEvents(20);
-
 }
 
 //look for recurring dragged event
@@ -1298,8 +1222,6 @@ function checkDragRecurring(count) {
 
     setTimeout(function () { clearInterval(x) }, 5000);
 
-
-
     var y = setInterval(function () {
 
         if (document.getElementsByClassName("VYTiVb").length > 0 && document.getElementsByClassName("VYTiVb")[0].innerHTML.includes("Saving")) {
@@ -1325,17 +1247,11 @@ function checkDragRecurring(count) {
     }, 200);
 
     setTimeout(function () { clearInterval(z) }, 10000);
-
-
-
     colorEvents(20);
-
 }
-
 
 //look for recurring event prompt
 function recurringEvent(count, action) {
-
     if (DEBUG) {
         console.log("RECURRING EVENT");
         console.log(action + " " + count);
@@ -1348,7 +1264,6 @@ function recurringEvent(count, action) {
     var x = document.getElementsByClassName("I7OXgf dT3uCc gF3fI fNxzgd Inn9w iWO5td");
 
     ////console.log(x);
-
     var buttons;
 
     try {
@@ -1405,8 +1320,6 @@ function recurringEvent(count, action) {
         });
     }
 
-
-
     // ok_button.addEventListener("click", function(evnt) {
     // 	//console.log("ok button clicked");
     // 	setTimeout(colorRecurring, 50);
@@ -1416,7 +1329,6 @@ function recurringEvent(count, action) {
         console.log("recurring event pressed detection");
         console.log(x[0]);
     }
-
 
     x[0].addEventListener("click", function (evnt) {
 
@@ -1449,17 +1361,13 @@ function recurringEvent(count, action) {
                 console.log("uhoh .");
             }
         }
-
     });
 
     // document.addEventListener("click", function(evnt) {
     // 	//console.log(evnt);
     // });
-
     ////console.log(ok_button);
-
     ////console.log(buttons);
-
 }
 
 //delete recurring events based on user option
@@ -1474,9 +1382,7 @@ function deleteRecurring() {
     var array4 = Array.prototype.slice.call(document.getElementsByClassName("ifwtOb elYzab-cXXICe-Hjleke NlL62b"), 0);
 
     var events = array1.concat(array2.concat(array3.concat(array4)));
-
     var events2 = document.getElementsByClassName("ifwtOb elYzab-cXXICe-Hjleke NlL62b xHTz8b");
-
     var events3 = document.getElementsByClassName("dtaVuc OY8yJd");
 
     if (recurrentChoice == "1") {
@@ -1493,7 +1399,6 @@ function deleteRecurring() {
     }
 
     if (recurrentChoice == "2") {
-
         var date;
 
         if (page == 1) {
@@ -1521,7 +1426,6 @@ function deleteRecurring() {
         }
 
         for (let i = 0; i < events.length; i++) {
-
             if (!events[i].getAttribute("data-eventid")) {
                 continue;
             }
@@ -1575,9 +1479,7 @@ function deleteRecurring() {
                     }
                 }
             }
-
         }
-
     }
 
     if (recurrentChoice == "3") {
@@ -1611,10 +1513,7 @@ function deleteRecurring() {
                 }
             }
         }
-
     }
-
-
 }
 
 //advanced wait for correct target box
@@ -1626,9 +1525,7 @@ function getTargetBox(targetBoxId) {
     var array4 = Array.prototype.slice.call(document.getElementsByClassName("ifwtOb elYzab-cXXICe-Hjleke NlL62b"), 0);
 
     var events = array1.concat(array2.concat(array3.concat(array4)));
-
     var events2 = document.getElementsByClassName("ifwtOb elYzab-cXXICe-Hjleke NlL62b xHTz8b");
-
     var events3 = document.getElementsByClassName("dtaVuc OY8yJd");
 
     if (page == 2) {
@@ -1642,12 +1539,10 @@ function getTargetBox(targetBoxId) {
             return events[i]
         }
     }
-
 }
 
 //color recurring events based on user option
 function colorRecurring(advanced) {
-
     if (DEBUG) {
         console.log("COLOR RECURRING");
         console.log("recurrentChoice " + recurrentChoice + " coloring");
@@ -1659,9 +1554,7 @@ function colorRecurring(advanced) {
     var array4 = Array.prototype.slice.call(document.getElementsByClassName("ifwtOb elYzab-cXXICe-Hjleke NlL62b"), 0);
 
     var events = array1.concat(array2.concat(array3.concat(array4)));
-
     var events2 = document.getElementsByClassName("ifwtOb elYzab-cXXICe-Hjleke NlL62b xHTz8b");
-
     var events3 = document.getElementsByClassName("dtaVuc OY8yJd");
 
     //var targetBoxId = targetBox.getAttribute("data-eventid").substring(0, 25) + targetBox.getAttribute("data-eventid").substring(45, 50);
@@ -1765,11 +1658,8 @@ function colorRecurring(advanced) {
     }
 
     else if (recurrentChoice == "3") {
-
         //console.log("hi!");
-
         // if (page == 1) {
-
         // } else if (page == 2) {
         // 	events = events2;
         // } else {
@@ -1783,7 +1673,6 @@ function colorRecurring(advanced) {
             }
 
             ////console.log(events[i].getAttribute("data-eventid"));
-
             ////console.log(events[i].getAttribute("data-eventid"));
 
             var eventId = events[i].getAttribute("data-eventid").substring(0, 25) + events[i].getAttribute("data-eventid").substring(45, 50);
@@ -1801,8 +1690,8 @@ function colorRecurring(advanced) {
             console.log("new rule made");
         }
         recurringColorsRules[targetBox.getAttribute("data-eventid").substring(0, 15)].push({ "date": "0", "done": [targetBoxId], "color": targetColor });
-
     }
+
     colorEvents(20);
     setTimeout(colorEvents, 100, 20);
     setTimeout(colorEvents, 200, 10);
@@ -1838,7 +1727,6 @@ function colorRecurring(advanced) {
     }, 75);
 
     setTimeout(function () { clearInterval(ac) }, 5000);
-
 }
 
 //function turn month into num
@@ -1917,35 +1805,27 @@ function compareTime(timeA, timeB) {
     }
 
     return 0;
-
 }
-
 
 //compare two dates, returns true if dateA earlier than dateB
 function compareDate(dateA, dateB) {
     dateA = dateA.split(", ");
     dateB = dateB.split(", ");
 
-
-
     if (parseInt(dateA[dateA.length - 1], 10) < parseInt(dateB[dateB.length - 1], 10)) {
         return 1;
     } else if (parseInt(dateA[dateA.length - 1], 10) == parseInt(dateB[dateB.length - 1], 10)) {
 
-
         var dateAMD = dateA[dateA.length - 2].split(" ");
         var dateBMD = dateB[dateB.length - 2].split(" ");
-
 
         if (month2num(dateAMD[0]) < month2num(dateBMD[0])) {
             return 1;
         } else if (month2num(dateAMD[0]) == month2num(dateBMD[0])) {
 
-
             if (parseInt(dateAMD[1], 10) < parseInt(dateBMD[1], 10)) {
                 return 1;
             } else if (parseInt(dateAMD[1], 10) == parseInt(dateBMD[1], 10)) {
-
 
                 var dateAt = dateA[0].split(" ");
                 var dateBt = dateB[0].split(" ");
@@ -1957,15 +1837,11 @@ function compareDate(dateA, dateB) {
                         return 1;
                     }
                 }
-
             }
         }
-
-
     }
 
     return false;
-
 }
 
 //TODO: deal with advanced details page color selection
@@ -1984,7 +1860,6 @@ function advancedColorSelected(evnt, action) {
     colorAdvancedDetailsCircle(20);
 }
 
-
 function advancedSaveClicked(evnt) {
     if (DEBUG) {
         console.log('save has been clicked in advanced');
@@ -1996,9 +1871,6 @@ function advancedSaveClicked(evnt) {
 
     setTimeout(customColorSelected, 50, evnt, currentColor);
     setTimeout(recurringEvent, 100, 20, "advanced-color");
-
-
-
 }
 
 function colorAdvanced(count) {
@@ -2012,7 +1884,6 @@ function colorAdvanced(count) {
     var array4 = Array.prototype.slice.call(document.getElementsByClassName("ifwtOb elYzab-cXXICe-Hjleke NlL62b"), 0);
 
     var events = array1.concat(array2.concat(array3.concat(array4)));
-
     var events2 = document.getElementsByClassName("ifwtOb elYzab-cXXICe-Hjleke NlL62b xHTz8b");
     var events3 = document.getElementsByClassName("dtaVuc OY8yJd");
 
@@ -2032,13 +1903,10 @@ function colorAdvanced(count) {
     }
 
     colorRecurring("advanced");
-
 }
-
 
 //color the little circle and set event listener for the button
 function colorAdvancedDetailsCircle(count) {
-
     if (count <= 0) {
         return;
     }
@@ -2053,8 +1921,6 @@ function colorAdvancedDetailsCircle(count) {
         return;
     }
 
-
-
     var x = document.getElementsByClassName("bcSKBf xSrKnf");
 
     if (typeof currentColor == "undefined" || currentColor == null) {
@@ -2062,7 +1928,6 @@ function colorAdvancedDetailsCircle(count) {
         currentColor = eventColors[temp_id.substring(0, 25) + temp_id.substring(45, 50)];
 
     }
-
 
     x[0].style["background-color"] = currentColor;
 
@@ -2076,19 +1941,14 @@ function colorAdvancedDetailsCircle(count) {
     button.addEventListener("click", advancedSaveClicked);
 }
 
-
-
 //if calendar reloads (new page or whatever)
-
 function hrefHandler() {
     this.oldHref = window.location.href;
     this.Check;
 
     var that = this;
     var detect = function () {
-
         if (that.oldHref != window.location.href) {
-
             if (window.location.href.includes("day")) {
                 page = 1;
             } else if (window.location.href.includes("customweek")) {
@@ -2108,8 +1968,6 @@ function hrefHandler() {
             }
 
             startUp();
-
-
             that.oldHref = window.location.href;
         }
     };
@@ -2117,7 +1975,6 @@ function hrefHandler() {
 }
 
 var hrefDetection = new hrefHandler();
-
 
 //function start up
 function startUp() {
@@ -2136,7 +1993,6 @@ function startUp() {
             && (events3.length == 0 || typeof events3[0] == "undefined")) {
 
         } else {
-
             colorEvents(20);
             setTimeout(colorEvents, 50, 20);
             setTimeout(colorEvents, 150, 20);
@@ -2149,7 +2005,6 @@ function startUp() {
     }, 100);
 
     setTimeout(function () { clearInterval(z) }, 30000);
-
 }
 
 if (page == 4) {
@@ -2157,10 +2012,3 @@ if (page == 4) {
 }
 
 startUp();
-
-
-
-
-
-
-
