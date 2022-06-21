@@ -6,7 +6,7 @@ var enableActionRule = {
             pageUrl: { hostContains: 'calendar.google.com' }
         })
     ],
-    actions: [new chrome.declarativeContent.ShowAction()]
+    actions: [new chrome.declarativeContent.SetIcon()]
 };
 
 // OnInstalled fires when the extension is first installed

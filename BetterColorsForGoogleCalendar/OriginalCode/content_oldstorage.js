@@ -5,6 +5,9 @@ var eventColors = {}; //event -> color pairings
 var recurringColorsRules = {}; //possible rules data structure
 var page = 1; //1 = week, 2 = month (apparently week, day, 4 days have same box class, so all = 1)
 var wait_init = 0;
+var targetBox = "";
+var recurrentChoice = "";
+var hrefDetection = new hrefHandler();
 
 if (window.location.href.includes("day")) {
     page = 1;
@@ -48,8 +51,22 @@ chrome.storage.sync.get(['eventColors'], function (data) {
 //     }
 //  });
 
-var targetBox = "";
-var recurrentChoice = "";
+//edit calendar color menu
+document.addEventListener("contextmenu", function (evnt) {
+    initColorMenu(evnt, 3);
+});
+
+//make sure every click syncs
+document.addEventListener("click", function (evnt) {
+
+    ////console.log(window.location);
+
+    setTimeout(checkExpand, 1, 20);
+});
+
+document.addEventListener("mousedown", function (evnt) {
+    setTimeout(checkDrag, 1, 20);
+});
 
 //get rules
 function getRules(count) {
@@ -471,11 +488,6 @@ function updateEvents(count) {
 
     cloudSync();
 }
-
-//edit calendar color menu
-document.addEventListener("contextmenu", function (evnt) {
-    initColorMenu(evnt, 3);
-});
 
 //init color menu
 function initColorMenu(evnt, count) {
@@ -913,20 +925,6 @@ function openColorSelector(evnt) {
     setTimeout(colorEvents, 100, 10);
     cloudSync();
 }
-
-//console.log("hi!");
-
-//make sure every click syncs
-document.addEventListener("click", function (evnt) {
-
-    ////console.log(window.location);
-
-    setTimeout(checkExpand, 1, 20);
-});
-
-document.addEventListener("mousedown", function (evnt) {
-    setTimeout(checkDrag, 1, 20);
-});
 
 //check for expand dialog
 function checkExpand(count) {
@@ -1565,8 +1563,6 @@ function compareDate(dateA, dateB) {
     return false;
 }
 
-//console.log("hi!");
-
 //if calendar reloads (new page or whatever)
 function hrefHandler() {
     this.oldHref = window.location.href;
@@ -1595,8 +1591,6 @@ function hrefHandler() {
     };
     this.Check = setInterval(function () { detect() }, 80);
 }
-
-var hrefDetection = new hrefHandler();
 
 //function start up
 function startUp() {

@@ -11,6 +11,11 @@ var wait_init = 0;
 //new global variable to toggle local storage
 var local_storage = false;
 
+var targetBox = "";
+var targetBoxId = "";
+var recurrentChoice = "";
+var currentColor = null;
+
 if (window.location.href.includes("day")) {
     page = 1;
 } else if (window.location.href.includes("customweek")) {
@@ -31,6 +36,26 @@ if (DEBUG) {
     console.log("href " + window.location.href);
     console.log("init page " + page);
 }
+
+//edit calendar color menu
+document.addEventListener("contextmenu", function (evnt) {
+
+    initColorMenu(evnt, 3);
+});
+
+//make sure every click syncs
+document.addEventListener("click", function (evnt) {
+    if (page == 4) {
+        initColorMenu(evnt, 3);
+        //colorAdvancedDetailsCircle(20);
+    }
+
+    setTimeout(checkExpand, 1, 20, evnt.target);
+});
+
+document.addEventListener("mousedown", function (evnt) {
+    setTimeout(checkDrag, 1, 20);
+});
 
 //local storage setup
 chrome.storage.local.get(null, function (items) {
@@ -177,11 +202,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, callback) {
         retrieve_everything();
     }
 });
-
-var targetBox = "";
-var targetBoxId = "";
-var recurrentChoice = "";
-var currentColor = null;
 
 //convert rgb to hex
 function rgb2hex(rgb) {
@@ -524,12 +544,6 @@ function colorEvents(count) {
         }
     }
 }
-
-//edit calendar color menu
-document.addEventListener("contextmenu", function (evnt) {
-
-    initColorMenu(evnt, 3);
-});
 
 //init color menu
 function initColorMenu(evnt, count) {
@@ -1088,20 +1102,6 @@ function openColorSelector(evnt) {
     setTimeout(colorEvents, 100, 10);
     storageSync();
 }
-
-//make sure every click syncs
-document.addEventListener("click", function (evnt) {
-    if (page == 4) {
-        initColorMenu(evnt, 3);
-        //colorAdvancedDetailsCircle(20);
-    }
-
-    setTimeout(checkExpand, 1, 20, evnt.target);
-});
-
-document.addEventListener("mousedown", function (evnt) {
-    setTimeout(checkDrag, 1, 20);
-});
 
 //check for expand dialog
 function checkExpand(count, target) {
