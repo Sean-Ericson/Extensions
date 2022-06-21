@@ -13,21 +13,22 @@
         "scripting",
         "alarms",
         "tabs",
-        "activeTab"
+        "activeTab",
+        "declarativeContent"
     ],
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
-            "16": "/images/clarkes_bird_16.png",
-            "32": "/images/clarkes_bird_32.png",
-            "48": "/images/clarkes_bird_48.png",
-            "128": "/images/clarkes_bird_128.png"
+            "16": "/images/flag_16.png",
+            "32": "/images/flag_32.png",
+            "48": "/images/flag_48.png",
+            "128": "/images/flag_128.png"
         }
     },
     "icons": {
-        "16": "/images/clarkes_bird_16.png",
-        "32": "/images/clarkes_bird_32.png",
-        "48": "/images/clarkes_bird_48.png",
-        "128": "/images/clarkes_bird_128.png"
+        "16": "/images/flag_16.png",
+        "32": "/images/flag_32.png",
+        "48": "/images/flag_48.png",
+        "128": "/images/flag_128.png"
     }
 }
