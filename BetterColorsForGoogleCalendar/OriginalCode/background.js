@@ -11,6 +11,7 @@ var rule1 = {
 };
 
 chrome.runtime.onInstalled.addListener(function (details) {
+    console.log("Installed")
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
         chrome.declarativeContent.onPageChanged.addRules([rule1])
     })

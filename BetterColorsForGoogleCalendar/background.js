@@ -3,14 +3,20 @@
 var enableActionRule = {
     conditions: [
         new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostContains: 'calendar.google.com' }
+            pageUrl: { urlContains: 'calendar.google.com' }
         })
     ],
-    actions: [new chrome.declarativeContent.SetIcon()]
+    actions: [
+        new chrome.declarativeContent.ShowAction(), 
+        new chrome.declarativeContent.RequestContentScript({ js: ['testContent.js'] })
+    ]
 };
 
 // OnInstalled fires when the extension is first installed
 chrome.runtime.onInstalled.addListener(() => {
+
+    chrome.action.disable();
+
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
         chrome.declarativeContent.onPageChanged.addRules([enableActionRule]);
     });
@@ -25,3 +31,5 @@ chrome.runtime.onStartup.addListener(() => {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     
 })
+
+console.log("BAckground.js")
