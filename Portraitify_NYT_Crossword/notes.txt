@@ -1,0 +1,19 @@
+<article id="puzzle" class="xwd__layout_puzzle--desktop" aria-label="Main Puzzle Layout">
+->
+<article id="puzzle" class="xwd__layout_puzzle--mobile" aria-label="Main Puzzle Layout">
+
+<section class="xwd__layout--cluelists">
+-> display: flex
+   flex-direction: row
+
+<section class="xwd__board xwd__desktop" aria-label="Game Board">
+->
+<section class="xwd__board xwd__desktop" aria-label="Game Board" style="justify-content: center;">
+
+<div class="xwd__board--content" style="transition: transform.........>
+-> width 85vw
+
+<section class="xwd__layout--cluelists">
+-> height 42vh
+
+set display:none for all the bullshit at the bottom of the page

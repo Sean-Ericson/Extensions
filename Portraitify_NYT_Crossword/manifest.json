@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "Portraitify_NYT_Crossword",
+    "version": "1.0",
+  
+    "description": "Reconfigure NYT Crossword for portrait mode.",
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*nytimes.com/crosswords/game/daily/*"],
+        "js": ["portraitify.js"]
+      }
+    ]
+  }
+  
