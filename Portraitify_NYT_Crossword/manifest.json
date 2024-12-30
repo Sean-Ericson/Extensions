@@ -1,15 +1,30 @@
 {
-    "manifest_version": 2,
-    "name": "Portraitify_NYT_Crossword",
-    "version": "1.0",
-  
-    "description": "Reconfigure NYT Crossword for portrait mode.",
-  
-    "content_scripts": [
-      {
-        "matches": ["*://*nytimes.com/crosswords/game/daily/*"],
-        "js": ["portraitify.js"]
-      }
-    ]
-  }
-  
+  "manifest_version": 2,
+  "name": "Portraitify_NYT_Crossword",
+  "version": "1.0",
+  "description": "Reconfigure NYT Crossword for portrait mode.",
+  "icons": {
+    "48": "icons/crossword-48.ico"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/crossword-48.ico",
+    "default_title": "Portraitify NYT Crossword",
+    "default_popup": "popup/activate.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.mozilla.org/*"
+      ],
+      "js": [
+        "content_scripts/portraitify.js"
+      ]
+    }
+  ]
+}
